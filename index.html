@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Clock</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="clock">
+        <div id="second" style="--clr: #fd2e62" class="circle"><i></i></div>
+        <div id="minute" style="--clr: #bed4fd" class="circle circle2">
+          <i></i>
+        </div>
+        <div id="hour" style="--clr: #07f3dfb4" class="circle circle3">
+          <i></i>
+        </div>
+
+        <span style="--i: 1"><b>1</b></span>
+        <span style="--i: 2"><b>2</b></span>
+        <span style="--i: 3"><b>3</b></span>
+        <span style="--i: 4"><b>4</b></span>
+        <span style="--i: 5"><b>5</b></span>
+        <span style="--i: 6"><b>6</b></span>
+        <span style="--i: 7"><b>7</b></span>
+        <span style="--i: 8"><b>8</b></span>
+        <span style="--i: 9"><b>9</b></span>
+        <span style="--i: 10"><b>10</b></span>
+        <span style="--i: 11"><b>11</b></span>
+        <span style="--i: 12"><b>12</b></span>
+      </div>
+
+      <div class="digital">
+        <div id="dHour" class="digitalHour" style="--clr: #07f3dfb4">00</div>
+        <div id="dMin" class="digitalMinute" style="--clr: #bed4fd">00</div>
+        <div id="dSecond" class="digitalSecond" style="--clr: #fd2e62">00</div>
+      </div>
+    </div>
+
+    <script>
+      let hour = document.querySelector("#hour");
+      let minute = document.querySelector("#minute");
+      let second = document.querySelector("#second");
+      setInterval(() => {
+        let date = new Date();
+        let getTime = date.getHours() * 30;
+        let getMinute = date.getMinutes() * 6;
+        let getSecond = date.getSeconds() * 6;
+
+        hour.style.transform = `rotateZ(${getTime + getMinute / 12}deg)`;
+        minute.style.transform = `rotateZ(${getMinute}deg)`;
+        second.style.transform = `rotateZ(${getSecond}deg)`;
+
+        // set digital time
+        let dHour = document.getElementById("dHour");
+        let dMin = document.getElementById("dMin");
+        let dSecond = document.getElementById("dSecond");
+
+        let h = new Date().getHours();
+        let m = new Date().getMinutes();
+        let s = new Date().getSeconds();
+
+        // lets set the zero if single digit number
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        dHour.innerHTML = h;
+        dMin.innerHTML = m;
+        dSecond.innerHTML = s;
+      });
+    </script>
+  </body>
+</html>
